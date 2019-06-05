@@ -1,21 +1,25 @@
-#!/usr/bin/python
+# !/usr/bin/python
 
 # import argparse
 
 def find_max_profit(prices):
-  high = 0
-  low = prices[0]
+  profits = []
+  highest = prices[1] - prices[0]
   for x in range(0, len(prices)):
-    if prices[x] > high:
-      high = prices[x]
-      highIndex = x
-  for x in range(0, highIndex):
-    if prices[x] < low:
-      low = prices[x]
-  return high - low
+    for y in range(0, len(prices)):
+      if x < y:
+        profit = prices[y]-prices[x]
+        profits.append(profit)
+
+  print(profits)
+  for i in range(0, len(profits)):
+    if highest < profits[i]:
+       highest = profits[i]
+  return highest
 
 
-print(find_max_profit([20, 10, 40, 5]))
+
+print(find_max_profit([200, 100, 90, 20, 5, 1, -5000]))
 # if __name__ == '__main__':
 #   # This is just some code to accept inputs from the command line
 #   parser = argparse.ArgumentParser(description='Find max profit from prices.')
